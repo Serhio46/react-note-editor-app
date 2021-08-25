@@ -1,0 +1,178 @@
+@import "./style_null.scss";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: Inter, system-ui;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 100px 10px 100px;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #dcdcdc;
+  border-radius: 5px;
+  padding: 0 15px;
+
+  &__input {
+    min-width: 400px;
+    height: 24px;
+    padding: 11px;
+    line-height: 16px;
+    border-radius: 5px;
+    background: #dcdcdc;
+    border: none;
+  }
+}
+
+.hr {
+  margin-bottom: 100px;
+}
+
+.addNote {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+
+  .form {
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    border-radius: 5px;
+    display: flex;
+
+    .input {
+      background: #fff;
+    }
+
+    .btn {
+      padding: 0 11px;
+      background: #dcdcdc;
+      border-radius: 0 5px 5px 0;
+    }
+  }
+}
+
+.notes {
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 50px 100px;
+  }
+
+  .noteItem {
+    width: 285px;
+    border: 2px solid #dcdcdc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+
+    &:hover {
+      box-shadow: 0 0 5px 5px rgba(221, 221, 221, 1);
+    }
+
+    &__date {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    &__content {
+      font-size: 14px;
+      //background: #dcdcdc;
+      line-height: 18px;
+      padding: 5px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+
+    &__tegs {
+      color: blue;
+      margin-bottom: 10px;
+    }
+
+    &__control {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__edit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      cursor: pointer;
+    }
+
+    button {
+      background: none;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalContent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  min-width: 420px;
+  border-radius: 10px;
+
+  textarea {
+    min-height: 200px;
+    margin-bottom: 15px;
+  }
+
+  button {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+  }
+}
+
+.modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showNote {
+  min-height: 200px;
+  margin-bottom: 15px;
+}
