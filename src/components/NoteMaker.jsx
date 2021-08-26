@@ -10,7 +10,6 @@ function NoteMaker({ note, setNote, addToList }) {
 				<textarea onChange={onNoteChange} value={note} type="text" placeholder="Добавить задачу" className="search__input input" />
 				<button onClick={addToList} className="btn">Добавить заметку</button>
 			</div>
-
 		</div>
 	);
 }

@@ -104,6 +104,10 @@ body {
       padding: 5px;
       border-radius: 5px;
       margin-bottom: 5px;
+
+      span {
+        color: blue;
+      }
     }
 
     &__tegs {
@@ -139,10 +143,10 @@ body {
   bottom: 0;
   right: 0;
   display: none;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.modalContent {
+.modal-content {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -174,5 +178,6 @@ body {
 
 .showNote {
   min-height: 200px;
+  max-width: 420px;
   margin-bottom: 15px;
 }

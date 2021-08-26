@@ -1,6 +1,18 @@
 import NoteItem from './NoteItem';
 
-function Notes({ notesList, removeNode, editNote, showNote }) {
+function Notes({ notesList, removeNode, editNote, showNote, setNotesList, search }) {
+
+	const renderNotes = () => {
+		const filtered = notesList.filter(item => item.tegs.join(' ').toUpperCase().includes(search.toUpperCase()));
+		return filtered.reverse().map((item, index) =>
+			<NoteItem
+				notesList={notesList}
+				setNotesList={setNotesList}
+				showNote={showNote} removeNode={removeNode}
+				editNote={editNote}
+				item={item}
+				key={`${item}_${index}`} />)
+	}
 
 	return (
 		<div className="notes">
@@ -8,9 +20,8 @@ function Notes({ notesList, removeNode, editNote, showNote }) {
 				<h1>{notesList.length > 0 ? 'Список текущих задач' : 'У Вас нет текущих задач'}</h1>
 			</div>
 			<div className="list">
-				{notesList.map((item, index) => <NoteItem showNote={showNote} removeNode={removeNode} editNote={editNote} item={item} key={`${item}_${index}`} />)}
+				{renderNotes()}
 			</div>
-
 		</div>
 	);
 }

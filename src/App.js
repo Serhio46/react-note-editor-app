@@ -7,6 +7,15 @@ import Notes from "./components/Notes";
 import EditModal from './components/EditModal';
 import ShowModal from './components/ShowModal';
 
+//Мой объект состояния заметки
+/* const myState = [
+  {id: date,
+    date: time,
+    text: createNote,
+    tegs: ['#React', '#JS']
+  }
+] */
+
 function App() {
 
   const [createNote, setcreateNote] = useState('');
@@ -15,10 +24,11 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [edit, setEdit] = useState('');
   const [idEdit, setIdEdit] = useState('');
+  const [search, setSearch] = useState('');
 
-  console.log(notesList);
-  console.log(createNote);
+  console.log(search);
 
+  //Добавить задачу
   const addToList = () => {
     const date = new Date();
 
@@ -41,17 +51,19 @@ function App() {
         id: date,
         date: time,
         text: createNote,
+        tegs: [],
       }]
     );
-
     setcreateNote('');
   }
 
+  //Удалить задачу
   const removeNode = (id) => {
     const filtered = notesList.filter(item => item.id !== id);
     setNotesList(filtered);
   }
 
+  //Редактировать задачу
   const editNote = (id) => {
     const currentItem = notesList.find(item => item.id === id);
     setIdEdit(id);
@@ -59,6 +71,7 @@ function App() {
     setModal(true);
   }
 
+  //Сохранить изменения
   const saveEdit = (id) => {
     const currentItem = notesList.find(item => item.id === id);
     currentItem.text = edit;
@@ -66,6 +79,7 @@ function App() {
     // })
   }
 
+  //Посмотреть задачу
   const showNote = (id) => {
     const currentItem = notesList.find(item => item.id === id);
     setEdit(currentItem.text);
@@ -84,10 +98,10 @@ function App() {
         saveEdit={saveEdit}
       >
       </EditModal>}
-      <Header />
+      <Header search={search} setSearch={setSearch} />
       <div className="hr" style={{ borderTop: "2px solid #dcdcdc ", marginLeft: 20, marginRight: 20 }}></div>
       <NoteMaker addToList={addToList} note={createNote} setNote={setcreateNote} />
-      <Notes showNote={showNote} editNote={editNote} removeNode={removeNode} notesList={notesList} />
+      <Notes search={search} setNotesList={setNotesList} showNote={showNote} editNote={editNote} removeNode={removeNode} notesList={notesList} />
     </div>
   );
 }
