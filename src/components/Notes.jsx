@@ -1,29 +1,37 @@
+import React, { useEffect } from 'react';
 import NoteItem from './NoteItem';
 
-function Notes({ notesList, removeNode, editNote, showNote, setNotesList, search }) {
+import { fetchLoadAdd } from '../redux/actions/listAction';
+import { useSelector, useDispatch } from 'react-redux';
 
-	const renderNotes = () => {
-		const filtered = notesList.filter(item => item.tegs.join(' ').toUpperCase().includes(search.toUpperCase()));
-		return filtered.reverse().map((item, index) =>
-			<NoteItem
-				notesList={notesList}
-				setNotesList={setNotesList}
-				showNote={showNote} removeNode={removeNode}
-				editNote={editNote}
-				item={item}
-				key={`${item}_${index}`} />)
+const Notes = React.memo(
+	function Notes({ search }) {
+
+		const { notesList } = useSelector(({ listReducer }) => listReducer);
+		const dispatch = useDispatch();
+
+		useEffect(() => {
+			console.log('эффект')
+			dispatch(fetchLoadAdd())
+		}, [dispatch])
+
+		const renderNotes = () => {
+			const filtered = notesList.filter(item => item.tegs.join(' ').toUpperCase().includes(search.toUpperCase()));
+			return filtered.reverse().map((item, index) =>
+				<NoteItem item={item} key={`${item}_${index}`} />)
+		}
+
+		return (
+			<div className="notes">
+				<div className="title">
+					<h1>{notesList.length > 0 ? 'Список текущих задач' : 'У Вас нет текущих задач'}</h1>
+				</div>
+				<div className="list">
+					{notesList && renderNotes()}
+				</div>
+			</div>
+		);
 	}
-
-	return (
-		<div className="notes">
-			<div className="title">
-				<h1>{notesList.length > 0 ? 'Список текущих задач' : 'У Вас нет текущих задач'}</h1>
-			</div>
-			<div className="list">
-				{renderNotes()}
-			</div>
-		</div>
-	);
-}
+	, [])
 
 export default Notes;

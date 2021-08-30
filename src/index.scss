@@ -78,7 +78,7 @@ body {
     padding: 50px 100px;
   }
 
-  .noteItem {
+  .note-item {
     width: 285px;
     border: 2px solid #dcdcdc;
     border-radius: 5px;
@@ -167,6 +167,15 @@ body {
     font-size: 14px;
     font-weight: 500;
     padding: 5px;
+  }
+
+  div {
+    margin-bottom: 5px;
+    
+
+    span {
+      color: blue;
+    }
   }
 }
 
