@@ -88,9 +88,17 @@ body {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+    min-height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       box-shadow: 0 0 5px 5px rgba(221, 221, 221, 1);
+    }
+
+    &__click {
+      flex: 1 1 auto;
     }
 
     &__date {
@@ -108,6 +116,8 @@ body {
       padding: 5px;
       border-radius: 5px;
       margin-bottom: 5px;
+      max-height: 150px;
+      overflow: hidden;
 
       span {
         color: blue;

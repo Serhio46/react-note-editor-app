@@ -28,7 +28,7 @@ export const fetchAddNote = (text) => (dispatch) => {
 	const time = `${day}/${month}, ${hours}:${minutes}`;
 
 	const obj = {
-		id: date,
+		id: text+day+hours+minutes,
 		date: time,
 		text: text,
 		tegs: hashTegs(text),
@@ -40,7 +40,7 @@ export const fetchAddNote = (text) => (dispatch) => {
 
 //Удаление задачи из стейт и сервер
 export const fetchRemoveNote = (id) => (dispatch) => {
-	console.log('удаление')
+	console.log(id)
 	axios.delete(`http://localhost:3001/notes/${id}`); //каким образом вот эта строка может заставлять делать ререндер все приложение
 	return dispatch({ type: 'REMOVE-NOTE', payload: id });
 };

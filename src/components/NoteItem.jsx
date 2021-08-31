@@ -15,6 +15,7 @@ const NoteItem = React.memo(function NoteItem({ item }) {
 	const dispatch = useDispatch();
 
 	const { date, text, id, tegs } = item;
+	console.log(id);
 
 	//преобразование текста в теги
 	const hash = (text) => {
@@ -47,17 +48,18 @@ const NoteItem = React.memo(function NoteItem({ item }) {
 
 	return (
 		<div className='note-item'>
-			<div onClick={() => showingNote()}>
+			<div onClick={() => showingNote()} className="note-item__click">
 				<div className="note-item__date">
 					<div>{date}</div>
 				</div>
 				<div className="note-item__content">
 					{hash(text)}
 				</div>
-				<div className="note-item__tegs">
+			</div>
+			<div className="note-item__tegs">
+					{tegs.length > 0 && <div className="hr1" style={{ borderTop: "2px solid #dcdcdc ", margin: 5 }}></div>}
 					{tegs && tegs.map((item, index) => <span key={index}>{item + ' '}</span>)}
 				</div>
-			</div>
 			{<div className="note-item__control">
 				<div onClick={() => editItem()} className="note-item__edit">
 					<img height={20} width={20} src={pencil} alt="edit" />

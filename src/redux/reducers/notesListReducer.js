@@ -8,6 +8,7 @@ const notesListReducer = (state = [], action) => {
 	}
 	if(action.type === 'REMOVE-NOTE') {
 		const filtered = state.filter(item => item.id !== action.payload);
+		console.log(filtered)
 		return filtered
 	} 
 	if(action.type === 'SAVE-EDIT') {//объект передаем
