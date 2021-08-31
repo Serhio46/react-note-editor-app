@@ -1,9 +1,13 @@
 import React from 'react';
+
 import { editNote, showItem } from '../redux/actions/editAction';
 import { fetchRemoveNote } from '../redux/actions/notesListAction';
 import { showNote, setVisible } from '../redux/actions/modalAction';
 
 import { useDispatch } from 'react-redux';
+
+import pencil from '../images/pencil.png';
+import garbage from '../images/garbage.png';
 
 
 const NoteItem = React.memo(function NoteItem({ item }) {
@@ -56,11 +60,11 @@ const NoteItem = React.memo(function NoteItem({ item }) {
 			</div>
 			{<div className="note-item__control">
 				<div onClick={() => editItem()} className="note-item__edit">
-					<img height={20} width={20} src={"/img/pencil.png"} alt="edit" />
+					<img height={20} width={20} src={pencil} alt="edit" />
 					<button>Редактировать</button>
 				</div>
 				<div onClick={() => removeNote()} className="note-item__edit">
-					<img height={16} width={16} src="/img/garbage.png" alt="edit" />
+					<img height={16} width={16} src={garbage} alt="edit" />
 					<button >Удалить</button>
 				</div>
 			</div>}

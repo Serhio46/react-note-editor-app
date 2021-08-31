@@ -34,9 +34,8 @@ export const fetchAddNote = (text) => (dispatch) => {
 		tegs: hashTegs(text),
 	}
 
-	//axios.post('http://localhost:3001/notes', obj)
-		return dispatch({ type: 'ADD-TO-LIST', payload: obj });
-	
+	axios.post('http://localhost:3001/notes', obj)
+	return dispatch({ type: 'ADD-TO-LIST', payload: obj });
 };
 
 //Удаление задачи из стейт и сервер
@@ -49,7 +48,7 @@ export const fetchRemoveNote = (id) => (dispatch) => {
 //Сохранение изменений в стейт и на сервере
 export const saveEdit = (obj) => (dispatch) => {
 	obj.tegs = hashTegs(obj.text);
-	//axios.put(`http://localhost:3001/notes/${obj.id}`, obj);
+	axios.put(`http://localhost:3001/notes/${obj.id}`, obj);
 	return dispatch({ type: 'SAVE-EDIT', payload: obj, })
 
 };
