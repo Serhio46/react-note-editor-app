@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
 
-import listReducer from './listReducer';
-
-
-
+import noteMakerReducer from './noteMakerReducer';
+import notesListReducer from './notesListReducer';
+import editReducer from './editReducer';
+import modalReducer from './modalReducer';
 
 const rootReduser = combineReducers({
-	listReducer,
+	noteMakerReducer,
+	notesListReducer,
+	editReducer,
+	modalReducer,
 });
 
 export default rootReduser;

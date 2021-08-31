@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import NoteItem from './NoteItem';
-
-import { fetchLoadAdd } from '../redux/actions/listAction';
+import { fetchLoadAdd } from '../redux/actions/notesListAction';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Notes = React.memo(
 	function Notes({ search }) {
 
-		const { notesList } = useSelector(({ listReducer }) => listReducer);
+		const notesList = useSelector(({ notesListReducer }) => notesListReducer);
 		const dispatch = useDispatch();
 
 		useEffect(() => {
-			console.log('эффект')
 			dispatch(fetchLoadAdd())
 		}, [dispatch])
 
@@ -32,6 +30,6 @@ const Notes = React.memo(
 			</div>
 		);
 	}
-	, [])
+)
 
 export default Notes;

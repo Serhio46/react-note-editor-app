@@ -14,7 +14,7 @@ export const fetchLoadAdd = () => (dispatch) => {
 	});
 }
 
-//Добавление задачи в стейт и на сервер
+//Добавление задачи в стейт
 export const fetchAddNote = (text) => (dispatch) => {
 
 	const date = new Date();
@@ -33,55 +33,24 @@ export const fetchAddNote = (text) => (dispatch) => {
 		text: text,
 		tegs: hashTegs(text),
 	}
-	axios.post('http://localhost:3001/notes', obj);
-	return dispatch({ type: 'ADD-TO-LIST', payload: obj });
 
+	//axios.post('http://localhost:3001/notes', obj)
+		return dispatch({ type: 'ADD-TO-LIST', payload: obj });
+	
 };
 
 //Удаление задачи из стейт и сервер
 export const fetchRemoveNote = (id) => (dispatch) => {
 	console.log('удаление')
-	//axios.delete(`http://localhost:3001/notes/${id}`); каким образом вот эта строка может заставлять делать ререндер все приложение
+	axios.delete(`http://localhost:3001/notes/${id}`); //каким образом вот эта строка может заставлять делать ререндер все приложение
 	return dispatch({ type: 'REMOVE-NOTE', payload: id });
 };
 
-//Упарвляемый ввод
-export const createNote = (value) => ({
-	type: 'CREATE-NOTE',
-	payload: value,
-});
-
-//Редактирование задачи
-export const editNote = (id) => ({
-	type: 'EDIT-NOTE',
-	payload: id,
-});
-
-//Упарвляемый ввод редактирования
-export const editText = (value) => ({
-	type: 'EDIT-TEXT-NOTE',
-	payload: value,
-});
-
 //Сохранение изменений в стейт и на сервере
 export const saveEdit = (obj) => (dispatch) => {
-
 	obj.tegs = hashTegs(obj.text);
-	//axios.put(`http://localhost:3001/notes/${obj.id}`, obj );
-	return dispatch({type: 'SAVE-EDIT', payload: obj,})
-	
+	//axios.put(`http://localhost:3001/notes/${obj.id}`, obj);
+	return dispatch({ type: 'SAVE-EDIT', payload: obj, })
+
 };
-
-//Просмотр задачи
-export const showNote = (id) => ({
-	type: 'SHOW-NOTE',
-	payload: id,
-})
-
-//Закрыть модалку
-export const closeModal = () => ({
-	type: 'CLOSE-MODAL',
-
-})
-
 

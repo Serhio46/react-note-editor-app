@@ -1,11 +1,12 @@
-import { fetchRemoveNote, editNote, showNote } from '../redux/actions/listAction';
+import React from 'react';
+import { editNote, showItem } from '../redux/actions/editAction';
+import { fetchRemoveNote } from '../redux/actions/notesListAction';
+import { showNote, setVisible } from '../redux/actions/modalAction';
 
 import { useDispatch } from 'react-redux';
 
 
-function NoteItem({ item }) {
-
-	console.log('item: ')
+const NoteItem = React.memo(function NoteItem({ item }) {
 
 	const dispatch = useDispatch();
 
@@ -31,12 +32,18 @@ function NoteItem({ item }) {
 	};
 
 	const editItem = () => {
-		dispatch(editNote(id));
+		dispatch(editNote(item));
+		dispatch(setVisible())
+	}
+
+	const showingNote = () => {
+		dispatch(showItem(item))
+		dispatch(showNote())
 	}
 
 	return (
 		<div className='note-item'>
-			<div onClick={() => dispatch(showNote(id))}>
+			<div onClick={() => showingNote()}>
 				<div className="note-item__date">
 					<div>{date}</div>
 				</div>
@@ -44,21 +51,21 @@ function NoteItem({ item }) {
 					{hash(text)}
 				</div>
 				<div className="note-item__tegs">
-					{tegs && tegs.map(item => <span>{item + ' '}</span>)}
+					{tegs && tegs.map((item, index) => <span key={index}>{item + ' '}</span>)}
 				</div>
 			</div>
 			{<div className="note-item__control">
-				<div onClick={editItem} className="note-item__edit">
-					<img height={20} width={20} src="img/pencil.png" alt="edit" />
+				<div onClick={() => editItem()} className="note-item__edit">
+					<img height={20} width={20} src={"/img/pencil.png"} alt="edit" />
 					<button>Редактировать</button>
 				</div>
-				<div onClick={removeNote} className="note-item__edit">
-					<img height={16} width={16} src="img/garbage.png" alt="edit" />
+				<div onClick={() => removeNote()} className="note-item__edit">
+					<img height={16} width={16} src="/img/garbage.png" alt="edit" />
 					<button >Удалить</button>
 				</div>
 			</div>}
 		</div>
 	);
-}
+})
 
 export default NoteItem;
