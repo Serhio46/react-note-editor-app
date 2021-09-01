@@ -9,7 +9,7 @@ const hashTegs = (text) => {
 
 //Первая загрузка приложения 
 export const fetchLoadAdd = () => (dispatch) => {
-	axios.get('http://localhost:3001/notes').then(({ data }) => {
+	axios.get('https://612f3bd95fc50700175f14f4.mockapi.io/notes').then(({ data }) => {
 		return dispatch({ type: 'LOAD-NOTES', payload: data });
 	});
 }
@@ -28,27 +28,27 @@ export const fetchAddNote = (text) => (dispatch) => {
 	const time = `${day}/${month}, ${hours}:${minutes}`;
 
 	const obj = {
-		id: text+day+hours+minutes,
+		id: text + day + hours + minutes,
 		date: time,
 		text: text,
 		tegs: hashTegs(text),
 	}
 
-	axios.post('http://localhost:3001/notes', obj)
+	axios.post('https://612f3bd95fc50700175f14f4.mockapi.io/notes', obj)
 	return dispatch({ type: 'ADD-TO-LIST', payload: obj });
 };
 
 //Удаление задачи из стейт и сервер
 export const fetchRemoveNote = (id) => (dispatch) => {
 	console.log(id)
-	axios.delete(`http://localhost:3001/notes/${id}`); //каким образом вот эта строка может заставлять делать ререндер все приложение
+	axios.delete(`https://612f3bd95fc50700175f14f4.mockapi.io/notes/${id}`); //каким образом вот эта строка может заставлять делать ререндер все приложение
 	return dispatch({ type: 'REMOVE-NOTE', payload: id });
 };
 
 //Сохранение изменений в стейт и на сервере
 export const saveEdit = (obj) => (dispatch) => {
 	obj.tegs = hashTegs(obj.text);
-	axios.put(`http://localhost:3001/notes/${obj.id}`, obj);
+	axios.put(`https://612f3bd95fc50700175f14f4.mockapi.io/notes/${obj.id}`, obj);
 	return dispatch({ type: 'SAVE-EDIT', payload: obj, })
 
 };
